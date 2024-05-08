@@ -1,0 +1,40 @@
+.admin-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #131212;
+    color: #fff;
+  }
+  
+
+  .logo-link {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFC94A;
+  text-decoration: none;
+}
+
+    .logo-link:hover {
+    color: #FFA712;
+    }
+
+  
+  .admin-links {
+    display: flex;
+    list-style: none;
+  }
+  
+  .admin-links li {
+    margin-right: 20px;
+  }
+  
+  .admin-links li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .admin-links li a:hover {
+    color: #ffcc00;
+  }
+  
