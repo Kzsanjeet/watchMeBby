@@ -1,5 +1,4 @@
 // this is login and register page for admin and user
-const Movie = require("./MoviresSchema")
 const Admin = require("/Admin.js")
 const User = require("/User.js")
 const bcrypt = require("bcrypt")
@@ -18,6 +17,9 @@ const loginAdmin =async (req,res)=>{
             const checkPassword = bcrypt.compareSync(password,login.password)
             if(checkPassword){
                 token = jwt.sign({id:login._id},process.env.SECRET_KEY,{expiresIn:"2h"})
+                return res.status(200).json({sucess:true,message:"logged in sucessfully",token, userId:login._id})
+            }else{  
+                return res.status(404).json({sucess:false,messag:"Password if incorrect"})
             }
         }
     } catch (error) {
@@ -57,7 +59,7 @@ const registerAdmin = async(req,res)=>{
 const registerUser = async(req,res)=>{
     try {
         const{fullname,contact,email,password} = req.body;
-        const createUser = await admin.create({
+        const createUser = await User.create({
             UserFullName:fullname,
             contact:contact,
             email:email,
@@ -73,5 +75,27 @@ const registerUser = async(req,res)=>{
     }
 }
 
+const loginUser =async (req,res)=>{
+    try {
+        const {email,password} = req.body;
+        const login = await User.find({email})
+        if(!login){
+            return res.status(404).json({sucess:false,message:"Unable to login"})
+        }
+        if(login){
+            const checkPassword = bcrypt.compareSync(password,login.password)
+            if(checkPassword){
+                token = jwt.sign({id:login._id},process.env.SECRET_KEY,{expiresIn:"2h"})
+                return res.status(200).json({sucess:true,message:"logged in sucessfully",token, userId:login._id})
+            }else{  
+                return res.status(404).json({sucess:false,messag:"Password if incorrect"})
+            }
+        }
+    } catch (error) {
+        return res.status(400).json({scuess:false,message:"error",error})
+    }
+}
 
-module.exports = {admin, registerAdmin}
+
+
+module.exports = {registerAdmin, registerUser,loginAdmin,loginUser}
