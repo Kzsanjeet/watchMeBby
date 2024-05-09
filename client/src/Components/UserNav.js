@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const UserNav = () => {
   return (
     <nav className="user-nav">
-      <Link to={'#'} className="logo">watchMe<span className='theme-color'>Bby</span></Link>
+      <Link to={'/'} className="logo">watchMe<span className='theme-color'>Bby</span></Link>
       <ul className="nav-links">
         <li>
           <Link  to={'#'} >   

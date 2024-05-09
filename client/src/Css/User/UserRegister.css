@@ -1,0 +1,59 @@
+/* UserRegister.css */
+*{
+    box-sizing: border-box;
+}
+.register-container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-form h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #2E2E2E;
+    color: #fff;
+  }
+  
+  .btn-register {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFC94A;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .login-account{
+    text-decoration: none;
+    color: #FFC94A;
+  }
+
+  .btn-register:hover {
+    background-color: #FFB830;
+  }
+  

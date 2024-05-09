@@ -12,6 +12,8 @@ import AddForYouMovies from './Pages/Admin/AddForYouMovies';
 import SeeUsers from './Pages/Admin/SeeUsers';
 import SeeMovies from './Pages/Admin/SeeMovies';
 import UserHomepage from './Pages/User/UserHomepage';
+import UserLogin from './Pages/User/UserLogin';
+import UserRegister from './Pages/User/UserRegister';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
 
         {/* for user */}
         <Route path='/' element={<UserHomepage />} />
+        <Route path='/login' element={<UserLogin />} />
+        <Route path='/register' element={<UserRegister/>} />
 
       </Routes>
     </Router>

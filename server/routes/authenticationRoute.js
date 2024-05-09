@@ -11,7 +11,6 @@ router.route("/login-admin").post(loginAdmin)
 router.route("/login-user").post(loginUser)
 
 //this is for CRUD in admin panel
-router.route("/add-movie").post(addMovies)
 router.route("/get-movie").get(getMovie)
 router.route("/del-movie").delete(delMovie)
 router.route("/edit-movie").patch(editMovie)
@@ -31,4 +30,4 @@ const storage = multer.diskStorage({
   const upload = multer({ storage });
   
   // Route to add a pet
-  router.post('/edit-movie/', upload.single('image'), addMovies); 
+  router.post('/add-movie/', upload.single('image'), addMovies); 
