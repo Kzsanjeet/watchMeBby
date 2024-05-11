@@ -1,12 +1,13 @@
 // add for movies add / edit / delete
-const Movie = require("./MoviesSchema.js")
-const categories = require("./FeaturedMovies.js")
+const Movie = require("../schema/MoviesSchema.js")
+const categories = require("../schema/FeaturedMovies.js")
 
 
 const addMovies = async(req,res)=>{
     try {
-        const{movieName,IMDB_score,Released_year,Duration,Genre,cast,production} =req.body;
-        const imagePath = req.file.path.replace(/\\/g, "/");
+        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production} =req.body;
+        const imagePath = req.file.path;
+        // console.log(movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production, imagePath)
 
         const add = await Movie.create({
             movieName,
@@ -14,9 +15,9 @@ const addMovies = async(req,res)=>{
             Released_year,
             Duration,
             Genre,
-            cast,
-            production,
-            imagePath
+            Cast,
+            Production,
+            image:imagePath
         })
         if(!add){
             return res.status(404).json({success:false,message:"Unable to add movie"})
@@ -30,11 +31,11 @@ const addMovies = async(req,res)=>{
 
 const getMovie = async(req,res)=>{
     try {
-        const get = await Movie.find({})
-        if(!get){
+        const movies = await Movie.find({})
+        if(!movies){
             return res.status(404).json({success:false,message:"Unable to get the movies"})
         }else{
-            return res.status(200).json({success:true,get})
+            return res.status(200).json({success:true, movies})
         }
     } catch (error) {
         return res.status(400).json({success:false,message:"error",error})
@@ -96,5 +97,37 @@ const getCategories = async(req,res)=>{
     }
 }
 
+//add movies  (5 moives id, category)
 
-module.exports = {addMovies,getMovie,delMovie,editMovie}
+const addFeaturedMovie = async(req,res)=>{
+    try {
+        const{movie1,movie2,movie3,movie4,movie5,category} = req.body;
+
+        const addFeatured = await categories.create({
+            movie1,
+            movie2,
+            movie3,
+            movie4,
+            movie5,
+            movieCategory:category
+        })
+        if(!addFeatured){
+            return res.status(404).json({success:false,message:"Unable to add to featured"})
+        }else{
+            return res.status(200).json({success:true,message:"created sucessfully"})
+        }
+    } catch (error) {
+        return res.status(404).json({success:false,message:"error",error})
+    }
+}
+
+
+
+module.exports = {
+    addMovies,
+    getMovie,
+    delMovie,
+    editMovie,
+    getCategories,
+    addFeaturedMovie
+}
