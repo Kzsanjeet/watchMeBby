@@ -9,7 +9,8 @@ const {
   addMovies,
   getMovie,
   delMovie,
-  editMovie
+  editMovie,
+  addFeaturedMovie
 } = require("../controllers/movies")
 const express = require("express")
 const router = express.Router()
@@ -44,6 +45,9 @@ router.route("/login-user").post(loginUser)
 router.route("/get-movie").get(getMovie)
 router.route("/del-movie").delete(delMovie)
 router.route("/edit-movie").patch(editMovie)
+
+//for featured movie add-category-movies
+router.route("/add-category-movies").post(addFeaturedMovie)
 
 
 

@@ -97,5 +97,37 @@ const getCategories = async(req,res)=>{
     }
 }
 
+//add movies  (5 moives id, category)
 
-module.exports = {addMovies,getMovie,delMovie,editMovie,getCategories}
+const addFeaturedMovie = async(req,res)=>{
+    try {
+        const{movie1,movie2,movie3,movie4,movie5,category} = req.body;
+
+        const addFeatured = await categories.create({
+            movie1,
+            movie2,
+            movie3,
+            movie4,
+            movie5,
+            movieCategory:category
+        })
+        if(!addFeatured){
+            return res.status(404).json({success:false,message:"Unable to add to featured"})
+        }else{
+            return res.status(200).json({success:true,message:"created sucessfully"})
+        }
+    } catch (error) {
+        return res.status(404).json({success:false,message:"error",error})
+    }
+}
+
+
+
+module.exports = {
+    addMovies,
+    getMovie,
+    delMovie,
+    editMovie,
+    getCategories,
+    addFeaturedMovie
+}

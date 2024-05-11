@@ -9,7 +9,6 @@ const AddFeatureMovies = () => {
   const [movie4, setMovie4] = useState([]);
   const [movie5, setMovie5] = useState([]);
 
-  const [showMovie1, setShowMovie1] = useState(false);
 
   const [movies, setMovies] = useState();
 
@@ -30,12 +29,43 @@ const AddFeatureMovies = () => {
     getMovies();
   }, []);
 
+  // Function to copy text to clipboard
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        alert('Movie Id copied to clipboard:');
+        // Optionally, you can show a success message to the user
+      })
+      .catch((error) => {
+        console.error('Error copying text to clipboard:', error);
+        // Optionally, you can show an error message to the user
+      });
+  };
 
-  const showMovie = () => {
-    setShowMovie1(true);
+
+  const addMoviesToFeatured = async () => { 
+    console.log(movie1, movie2, movie3, movie4, movie5);
+    console.log('Featured');
+    try {
+      const response = await fetch(`${apiUrl}/add-category-movies`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ movie1, movie2, movie3, movie4, movie5, category: 'Featured'}),
+      });
+      // console.log(respoAdding movies to featurednse);
+      if (response.ok) {
+        setMovie1('');
+        setMovie2('');
+        setMovie3('');
+        setMovie4('');
+        setMovie5('');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
-
-  console.log(movie1)
  
   
  
@@ -44,40 +74,36 @@ const AddFeatureMovies = () => {
       <AdminNav />
       <div className="add-feature-movies">
         <h2>Add Featured Movies</h2>
-        <div className="movie-buttons">
+        <div className='container'>
+          <div className="movie-buttons">
+              <label>Movie 1</label>
+              <input type="text" placeholder="Enter Movie ID" onChange={(e) => setMovie1(e.target.value)} />
+              <label>Movie 2</label>
+              <input type="text" placeholder="Enter Movie ID" onChange={(e) => setMovie2(e.target.value)} />
+              <label>Movie 3</label>
+              <input type="text" placeholder="Enter Movie ID" onChange={(e) => setMovie3(e.target.value)} />
+              <label>Movie 4</label>
+              <input type="text" placeholder="Enter Movie ID" onChange={(e) => setMovie4(e.target.value)} />
+              <label>Movie 5</label>
+              <input type="text" placeholder="Enter Movie ID" onChange={(e) => setMovie5(e.target.value)} />
 
-            <div className="add-movie">
-              <button onClick={showMovie}>Add Movie 1</button>
-            </div>
-            <div className="add-movie">
-            <button>Add Movie 2</button>
+              <button onClick={addMoviesToFeatured}>Add Movies To Featured</button>
 
-            </div>
-            <div className="add-movie">
-              <button>Add Movie 3</button>
+          </div>
+          <div className='show-movie'>
+            {
+              movies && movies.map((movie) => (
+                <div className="movie" key={movie._id} onClick={() => copyToClipboard(movie._id)}>
+                  <img src={`${apiUrl}/${movie.image}`} alt={movie.movieName} />
+                  <h3>{movie.movieName}</h3>
+                  <p>IMDB Score: {movie.IMDB_score}</p>
+                  <p>Released Year: {movie.Released_year}</p>
+                  <p>{movie._id}</p>
+                </div>
+              ))
+            }
+          </div>
 
-            </div>
-            <div className="add-movie">
-              <button>Add Movie 4</button>
-
-            </div>
-            <div className="add-movie">
-              <button>Add Movie 5</button>
-
-            </div>
-
-        </div>
-        <div className='show-movie'>
-        {showMovie1 ? (
-          movies && movies.map((movie) => (
-            <div className="movie" key={movie._id} >
-              <img src={`${apiUrl}/${movie.image}`} alt={movie.movieName} />
-              <h3>{movie.movieName}</h3>
-              <p>IMDB Score: {movie.IMDB_score}</p>
-              <p>Released Year: {movie.Released_year}</p>
-            </div>
-          ))
-        ) : null}
         </div>
       </div>
     </>
