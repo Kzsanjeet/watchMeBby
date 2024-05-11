@@ -1,6 +1,6 @@
 // this is login and register page for admin and user
-const Admin = require("/Admin.js")
-const User = require("/User.js")
+const Admin = require("../schema/Admin")
+const User = require("../schema/User")
 const bcrypt = require("bcrypt")
 
 // for admin

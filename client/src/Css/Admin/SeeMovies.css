@@ -1,0 +1,33 @@
+.see-movies-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .movies-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .movies-table th,
+  .movies-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .movies-table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .movies-table tbody tr:nth-child(even) {
+    background-color: #252222;
+  }
+  
+  .movies-table img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
