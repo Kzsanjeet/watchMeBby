@@ -141,7 +141,10 @@ const UserHomepage = () => {
                 </div>
             </div>
 
-            <div className='all-moives-container'></div>
+            <div className='all-moives-container'>
+              <h2>Movies</h2>
+
+            </div>
 
         </div>
       

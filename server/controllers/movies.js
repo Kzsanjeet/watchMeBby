@@ -6,7 +6,7 @@ const { create } = require("../schema/Admin.js");
 
 const addMovies = async(req,res)=>{
     try {
-        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production} =req.body;
+        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production,type} =req.body;
         const imagePath = req.file.path;
         // console.log(movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production, imagePath)
 
@@ -18,6 +18,7 @@ const addMovies = async(req,res)=>{
             Genre,
             Cast,
             Production,
+            type,
             image:imagePath
         })
         if(!add){

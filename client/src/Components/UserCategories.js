@@ -23,6 +23,11 @@ const UserCategories = () => {
     <div className='man-nav-container'>
         <div className="main-container">
       <nav className="user-categories">
+        <div className='nav-menu'>
+
+            <h3>Menu</h3>
+         
+        </div>
         <ul className="nav-items">
           <li>
             <Link to="/">Home</Link>

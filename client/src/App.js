@@ -14,6 +14,7 @@ import SeeMovies from './Pages/Admin/SeeMovies';
 import UserHomepage from './Pages/User/UserHomepage';
 import UserLogin from './Pages/User/UserLogin';
 import UserRegister from './Pages/User/UserRegister';
+import AllMovies from './Pages/User/AllMovies';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Route path='/' element={<UserHomepage />} />
         <Route path='/login' element={<UserLogin />} />
         <Route path='/register' element={<UserRegister/>} />
-
+        <Route path='/movies' element={<AllMovies/>} />
       </Routes>
     </Router>
     

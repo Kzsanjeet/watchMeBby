@@ -34,6 +34,11 @@ const addMovieSchema = new mongoose.Schema({
         type:String,
         required:true
         },
+    type:{
+        type:String,
+        enum:["Movie","TV-Show","Series"],
+        required:true
+    },
     like:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"

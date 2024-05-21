@@ -9,6 +9,14 @@
 
 }
 
+.nav-menu{
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px
+}
+
 .main-container {
   max-width: 1600px;
   height: 80px;
@@ -126,4 +134,16 @@
 
 .search-container button[type="submit"]:hover {
   background-color: #FFC94A; /* Darker shade of primary color on hover */
+}
+
+
+@media (max-width: 850px) {
+  .nav-items {
+    display: none;
+  }
+
+  .nav-menu{
+    display: flex;
+  }
+
 }
