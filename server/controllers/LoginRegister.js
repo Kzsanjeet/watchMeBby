@@ -58,44 +58,44 @@ const registerAdmin = async(req,res)=>{
 // register user
 const registerUser = async(req,res)=>{
     try {
-        const{fullname,contact,email,password} = req.body;
+        const{fullName,contact,email,password} = req.body;
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password,salt)
         const createUser = await User.create({
-            UserFullName:fullname,
+            UserFullname:fullName,
             contact:contact,
             email:email,
-            password:password
+            password:hashedPassword
         })
         if(!createUser){
-            return res.status(404).json({scuess:false,message:"Not created"})
+            return res.status(404).json({success:false,message:"Not created"})
         }else{
-            return res.status(200).json({sucess:true,message:"User Registered sucessfully"})
+            return res.status(200).json({success:true,message:"User Registered sucessfully"})
         }
     } catch (error) {
-        return res.status(400).json({scuess:false,message:"err",error})
+        return res.status(400).json({success:false,message:"err",error})
     }
 }
 
-const loginUser =async (req,res)=>{
+const loginUser = async (req, res) => {
     try {
-        const {email,password} = req.body;
-        const login = await User.find({email})
-        if(!login){
-            return res.status(404).json({sucess:false,message:"Unable to login"})
-        }
-        if(login){
-            const checkPassword = bcrypt.compareSync(password,login.password)
-            if(checkPassword){
-                token = jwt.sign({id:login._id},process.env.SECRET_KEY,{expiresIn:"2h"})
-                return res.status(200).json({sucess:true,message:"logged in sucessfully",token, userId:login._id})
-            }else{  
-                return res.status(404).json({sucess:false,messag:"Password if incorrect"})
-            }
-        }
+      const { email, password } = req.body;
+      const user = await User.findOne({ email });
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: "Unable to login" });
+      }
+  
+      const checkPassword = bcrypt.compareSync(password, user.password);
+      if (checkPassword) {
+        // const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "2h" });
+        return res.status(200).json({ success: true, message: "Logged in successfully" }); // token, userId: user._id
+      } else {
+        return res.status(401).json({ success: false, message: "Password is incorrect" });
+      }
     } catch (error) {
-        return res.status(400).json({scuess:false,message:"error",error})
+      return res.status(400).json({ success: false, message: "Error", error });
     }
-}
-
-
-
+  };
+  
 module.exports = {registerAdmin, registerUser,loginAdmin,loginUser}

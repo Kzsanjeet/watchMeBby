@@ -9,6 +9,8 @@ const UserRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const apiUrl = "http://localhost:4000"
+
   const handleFullNameChange = (event) => {
     setFullName(event.target.value);
   };
@@ -25,14 +27,40 @@ const UserRegister = () => {
     setPassword(event.target.value);
   };
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
+  
     // Implement your registration logic here
-    console.log('Full Name:', fullName);
-    console.log('Contact:', contact);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const fetchApi = await fetch(`${apiUrl}/register-user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          fullName,
+          contact,
+          email,
+          password
+        })
+      });
+  
+      const register = await fetchApi.json();
+  
+      if (register.success) {
+        alert("Registered successfully");
+        setFullName("");
+        setContact("");
+        setEmail("");
+        setPassword("");
+      } else {
+        alert("Registration unsuccessful");
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
+  
 
   return (
     <>

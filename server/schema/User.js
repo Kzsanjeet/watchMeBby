@@ -2,7 +2,7 @@
 // this is admin schema 
 const mongoose = require("mongoose")
 
-const adminRegistration = new mongoose.Schema({
+const UserRegistration = new mongoose.Schema({
     UserFullname:{
         type:String,
         required:true
@@ -25,6 +25,6 @@ const adminRegistration = new mongoose.Schema({
     }
 })
 
-const User = mongoose.model("user",adminRegistration)
+const User = mongoose.model("user",UserRegistration)
 
 module.exports = User
