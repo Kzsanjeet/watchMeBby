@@ -39,8 +39,10 @@ const addMovieSchema = new mongoose.Schema({
         ref:"User"
     }
 
-});
+},
+{timestamps:true}
+);
 
-const Movie = mongoose.model("Movies", addMovieSchema); 
+const Movies = mongoose.model("Movies", addMovieSchema); 
 
-module.exports = Movie;
+module.exports = Movies;

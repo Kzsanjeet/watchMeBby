@@ -5,23 +5,23 @@ const mongoose = require("mongoose")
 const categoriesSchema = new mongoose.Schema({
     movie1:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"MoviesSchema"
+        ref:"Movies"
     },
     movie2:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"MoviesSchema"
+        ref:"Movies"
     },
     movie3:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"MoviesSchema"
+        ref:"Movies"
     },
     movie4:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"MoviesSchema"
+        ref:"Movies"
     },
     movie5:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"MoviesSchema"
+        ref:"Movies"
     },
     movieCategory:{
         type:String,

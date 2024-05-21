@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import '../../Css/User/UserLogin.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserNav from '../../Components/UserNav';
+
+
+
+
 
 const UserLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
   const apiUrl = "http://localhost:4000"
 
   const handleEmailChange = (event) => {
@@ -38,6 +44,7 @@ const UserLogin = () => {
   
       if (login.success) {
         alert("Login successful");
+        navigate("/");
         setEmail("");
         setPassword("");
       } else {

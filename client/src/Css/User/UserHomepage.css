@@ -1,3 +1,93 @@
-*{
-    background-color: #00215E;
-}
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin-top: 6rem;
+  }
+  
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Main Container */
+  .main-container {
+    padding: 20px;
+  }
+  
+  /* Featured and Trending Movies Containers */
+  .featured-movies-container, .trending-movies-container {
+    margin-bottom: 40px;
+  }
+  
+  /* Movie Short Info */
+  .movie-short-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+   
+
+  }
+  
+  /* Individual Movie Container */
+  .movie1, .movie2, .movie3, .movie4, .movie5 {
+    background-color:none;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    overflow: hidden;
+    width: 200px;
+    transition: transform 0.2s;
+  }
+  
+  .movie1:hover, .movie2:hover, .movie3:hover, .movie4:hover, .movie5:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Movie Image */
+  .image-movie {
+    width: 100%;
+    height: 300px; /* Set a fixed height for images */
+    overflow: hidden; /* Ensure overflow is hidden */
+  }
+  
+  .image-movie img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    display: block;
+  }
+  
+  /* Movie Name */
+  .name-movie {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 0 10px;
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* Extra Details */
+  .extra-details-movie {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 10px 10px;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .extra-details-movie p {
+    margin: 0;
+  }
+  
+  /* Loading Animation */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
