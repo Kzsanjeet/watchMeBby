@@ -97,5 +97,42 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ success: false, message: "Error", error });
     }
   };
+
+  //get user data for admin
+  const getUserData = async(req,res)=>{
+    try {
+        const userData = await User.find({})
+        if(!userData){
+            return res.status(404).json({success:false,message:"Unable to get user data"})
+        }else{
+            return res.status(200).json({success:true,userData})
+        }
+    } catch (error) {
+        return res.status(400).json({success:false,message:"error",error})
+    }
+  }
+
+const deleteUser = async(req,res)=>{
+    try {
+        const userId = req.params.id;
+        console.log(userId)
+        console.log("delete")
+        const deleteU = await User.findByIdAndDelete(userId)
+        if(!deleteU){
+            return res.status(404).json({success:false,message:"Unable to find and delete user"})
+        }else{
+            return res.status(200).json({success:true,message:"deleted successfully"})
+        }
+    } catch (error) {
+        res.status(400).json({success:false,message:"error",error})
+    }
+}
   
-module.exports = {registerAdmin, registerUser,loginAdmin,loginUser}
+module.exports = {
+    registerAdmin, 
+    registerUser,
+    loginAdmin,
+    loginUser,
+    getUserData,
+    deleteUser
+}

@@ -34,13 +34,20 @@ const addMovieSchema = new mongoose.Schema({
         type:String,
         required:true
         },
+    type:{
+        type:String,
+        enum:["Movie","TV-Show","Series"],
+        required:true
+    },
     like:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     }
 
-});
+},
+{timestamps:true}
+);
 
-const Movie = mongoose.model("Movies", addMovieSchema); 
+const Movies = mongoose.model("Movies", addMovieSchema); 
 
-module.exports = Movie;
+module.exports = Movies;

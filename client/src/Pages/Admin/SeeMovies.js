@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import AdminNav from '../../Components/AdminNav';
 import '../../Css/Admin/SeeMovies.css'; 
+import { tailChase } from 'ldrs'
+
 
 const SeeMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  tailChase.register()
+
 
   const apiUrl = "http://localhost:4000";
   const getMovies = async () => {
+    setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/get-movie`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/get-movie`);
       const data = await response.json();
       if (data.success) {
         setMovies(data.movies);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching movies:', error);
+      // setLoading(false);
     }
   };
 
@@ -41,6 +50,19 @@ const SeeMovies = () => {
             </tr>
           </thead>
           <tbody>
+
+            {loading ? (
+              <tr>
+                <div className='loading'>
+                  <l-tail-chase
+                    size="40"
+                    speed="1.75" 
+                    color="#FFC94A " 
+                  ></l-tail-chase>
+                </div>
+              </tr>
+            ):null}
+
             {movies.map((movie) => (
               <tr key={movie._id}>
                 <td>

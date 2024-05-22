@@ -11,6 +11,7 @@ const AddMovies = () => {
     Duration: '',
     Genre: '',
     Cast: '',
+    type:'',
     Production: '',
     image: null, // Initialize as null
   });
@@ -36,6 +37,7 @@ const AddMovies = () => {
     formDataToSend.append('Genre', formData.Genre);
     formDataToSend.append('Cast', formData.Cast);
     formDataToSend.append('Production', formData.Production);
+    formDataToSend.append('type', formData.type);
     formDataToSend.append('image', formData.image); // Append the file
 
     try {
@@ -53,6 +55,7 @@ const AddMovies = () => {
           Genre: '',
           Cast: '',
           Production: '',
+          type: '',
           image: null,
         });
       }
@@ -94,6 +97,15 @@ const AddMovies = () => {
           <div className="form-group">
             <label htmlFor="Production">Production:</label>
             <input type="text" id="Production" name="Production" value={formData.Production} onChange={handleChange} placeholder="Enter production company" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="type">Type:</label>
+            <select id="type" name="type" value={formData.type} onChange={handleChange} required>
+              <option value="">Select type</option>
+              <option value="Movie">Movie</option>
+              <option value="TV-Show">TV-Show</option>
+              <option value="Series">Series</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="image">Image File:</label>

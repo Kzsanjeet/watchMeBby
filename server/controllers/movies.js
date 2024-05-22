@@ -1,11 +1,12 @@
 // add for movies add / edit / delete
 const Movie = require("../schema/MoviesSchema.js")
-const categories = require("../schema/FeaturedMovies.js")
+const categories = require("../schema/FeaturedMovies.js");
+const { create } = require("../schema/Admin.js");
 
 
 const addMovies = async(req,res)=>{
     try {
-        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production} =req.body;
+        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production,type} =req.body;
         const imagePath = req.file.path;
         // console.log(movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production, imagePath)
 
@@ -17,6 +18,7 @@ const addMovies = async(req,res)=>{
             Genre,
             Cast,
             Production,
+            type,
             image:imagePath
         })
         if(!add){
@@ -31,7 +33,7 @@ const addMovies = async(req,res)=>{
 
 const getMovie = async(req,res)=>{
     try {
-        const movies = await Movie.find({})
+        const movies = await Movie.find({}).sort({createdAt:-1})
         if(!movies){
             return res.status(404).json({success:false,message:"Unable to get the movies"})
         }else{
@@ -97,25 +99,50 @@ const getCategories = async(req,res)=>{
     }
 }
 
+
+
 //add movies  (5 moives id, category)
 
 const addFeaturedMovie = async(req,res)=>{
     try {
         const{movie1,movie2,movie3,movie4,movie5,category} = req.body;
 
-        const addFeatured = await categories.create({
-            movie1,
-            movie2,
-            movie3,
-            movie4,
-            movie5,
-            movieCategory:category
-        })
-        if(!addFeatured){
-            return res.status(404).json({success:false,message:"Unable to add to featured"})
-        }else{
-            return res.status(200).json({success:true,message:"created sucessfully"})
+        if(!movie1 || !movie2 || !movie3 || !movie4 || !movie5 || !category){
+            return res.status(404).json({success:false,message:"All fields are required"})
         }
+
+        const checkStatus = await categories.findOne({movieCategory:category})
+
+        if(checkStatus){
+            const update = await categories.findOneAndUpdate({movieCategory:category},{
+                movie1,
+                movie2,
+                movie3,
+                movie4,
+                movie5
+            
+            })
+            if(!update){
+                return res.status(404).json({success:false,message:"Unable to updated the featured movies"})
+            }else{
+                return res.status(200).json({success:true,message:"Added successfully"})
+            }
+        }else{
+            const addFeatured = await categories.create({
+                movie1,
+                movie2,
+                movie3,
+                movie4,
+                movie5,
+                movieCategory:category
+            })
+            if(!addFeatured){
+                return res.status(404).json({success:false,message:"Unable to add to featured"})
+            }else{
+                return res.status(200).json({success:true,message:"created sucessfully"})
+            }
+        }
+        
     } catch (error) {
         return res.status(404).json({success:false,message:"error",error})
     }
