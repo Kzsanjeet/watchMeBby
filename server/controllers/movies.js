@@ -4,6 +4,9 @@ const categories = require("../schema/FeaturedMovies.js");
 const { create } = require("../schema/Admin.js");
 
 
+
+
+
 const addMovies = async(req,res)=>{
     try {
         const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production,type} =req.body;
@@ -43,6 +46,21 @@ const getMovie = async(req,res)=>{
         return res.status(400).json({success:false,message:"error",error})
     }
 }
+const getSpecificMovie = async (req,res)=>{
+    try {
+        const movieId = req.params.id;
+        const getSpecific = await Movie.findById({_id:movieId})
+        if(!getSpecific){
+            return res.status(404).json({success:false,message:"Unable to get the specific movie"})
+        }else{
+            return res.status(200).json({success:true,getSpecific})
+        }
+    } catch (error) {
+        return res.status(400).json({success:false,message:"error",error})
+    }
+}
+
+
 
 const delMovie = async(req,res)=>{
     try {
@@ -61,8 +79,12 @@ const delMovie = async(req,res)=>{
 
 const editMovie = async(req,res)=>{
     try {
-        const{movieName,IMDB_score,Released_year,Duration,Genre,cast,production} = req.body;
-        const {movieId} = req.params
+        const{movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production, type} = req.body;
+        const imagePath = req.file.path;
+        const movieId = req.params.id
+
+        console.log(movieName,IMDB_score,Released_year,Duration,Genre,Cast,Production, type, imagePath)
+        console.log(movieId)
 
         const update = await Movie.findByIdAndUpdate({_id:movieId},{
             movieName,
@@ -70,8 +92,10 @@ const editMovie = async(req,res)=>{
             Released_year,
             Duration,
             Genre,
-            cast,
-            production
+            Cast,
+            Production,
+            type,
+            image:imagePath
         }
         )
         if(!update){
@@ -80,6 +104,7 @@ const editMovie = async(req,res)=>{
             return res.status(200).json({success:true,message:"Edited sucessfuly"})
         }
     } catch (error) {
+        // console.log(error)
         return res.status(400).json({success:false,message:"error",error})
     }
 }
@@ -156,5 +181,6 @@ module.exports = {
     delMovie,
     editMovie,
     getCategories,
-    addFeaturedMovie
+    addFeaturedMovie,
+    getSpecificMovie
 }

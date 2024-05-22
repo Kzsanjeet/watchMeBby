@@ -25,7 +25,7 @@ const UserHomepage = () => {
   const getCategoriesMovies = async (categ) => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/get-category-movies?category=${categ}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/both/get-category-movies?category=${categ}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +102,8 @@ const UserHomepage = () => {
                               <p>•</p>
                               <p>{movie.IMDB_score}</p>
                               <p>•</p>
-                              <p>{movie.Duration}</p>
+                              <p>{movie?.type}</p>
+                              
                             </div>
                           </div>
                         ) : null;
@@ -130,7 +131,7 @@ const UserHomepage = () => {
                                             <p>•</p>
                                             <p>{movie.IMDB_score}</p>
                                             <p>•</p>
-                                            <p>{movie.Duration}</p>
+                                            <p>{movie?.type}</p>
                                         </div>
                                     </div>
                                 ) : null;

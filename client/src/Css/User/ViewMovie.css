@@ -1,0 +1,205 @@
+/* Add this CSS code in your 'ViewMovie.css' or relevant CSS file */
+.poster-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .poster-container img {
+    width: 100%;
+    height: 50vh;
+    object-fit: contain;
+
+    border-radius: 10px;
+  }
+  
+  .player-server {
+    text-align: center;
+    margin: 20px 0;
+    color: #ccc; /* Changed text color from white */
+  }
+  
+  .players {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .server {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333; /* Darker background color */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .server p {
+    margin: 0 0 10px;
+    color: #ccc; /* Changed text color from white */
+  }
+  
+  .server button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc94a;
+    color: #333; /* Changed text color to match dark background */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .server button:hover {
+    background-color: #ffb30a;
+  }
+  
+  .movie-details {
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin:0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ccc; 
+  }
+  
+  .movie-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+  }
+  
+  .movie-info {
+    flex-grow: 1;
+    margin-left: 20px;
+  }
+  
+  .movie-info h1 {
+    margin-top: 0;
+  }
+  
+  .like-movie {
+    display: flex;
+    max-width: 500px;
+    margin: 20px auto;
+    align-items: center;
+    
+  }
+  
+  .like-movie button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc94a;
+    color: #333; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .like-movie button:hover {
+    background-color: #ffb30a;
+  }
+  
+  .comment-section {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ccc; 
+  }
+  
+  .comments .comment {
+    margin-bottom: 20px;
+  }
+  
+  .comments .comment h3 {
+    margin: 0 0 5px;
+  }
+  
+  .add-comment {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-comment textarea {
+    
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #555; /* Darker border color */
+    margin-bottom: 10px;
+    resize: none;
+    background-color: #333; /* Darker background color */
+    color: #ccc; /* Changed text color from white */
+  }
+  
+  .add-comment button {
+    align-self: flex-end;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc94a;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-comment button:hover {
+    background-color: #ffb30a;
+  }
+  
+  .for-you-movie-section {
+    max-width: 1600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ccc; /* Changed text color from white */
+  }
+  
+  .for-you-movies {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .for-you-movie {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .for-you-movie > div {
+    flex: 1 1 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-movie img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .name-movie {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .extra-details-movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    color: #777;
+  }
+  

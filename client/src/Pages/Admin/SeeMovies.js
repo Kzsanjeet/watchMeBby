@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AdminNav from '../../Components/AdminNav';
 import '../../Css/Admin/SeeMovies.css'; 
 import { tailChase } from 'ldrs'
+import { Link } from 'react-router-dom';
 
 
 const SeeMovies = () => {
@@ -35,7 +36,7 @@ const SeeMovies = () => {
     <>
       <AdminNav />
       <div className="see-movies-container">
-        <h1>See Movies</h1>
+      <h1>See Movies ({movies.length})</h1>
         <table className="movies-table">
           <thead>
             <tr>
@@ -47,6 +48,8 @@ const SeeMovies = () => {
               <th>Genre</th>
               <th>Cast</th>
               <th>Production</th>
+              <th>Type</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -75,6 +78,17 @@ const SeeMovies = () => {
                 <td>{movie.Genre}</td>
                 <td>{movie.Cast}</td>
                 <td>{movie.Production}</td>
+                <td>{movie?.type}</td>
+                <td >
+          
+                    <Link to={`/admin/edit-movie/${movie._id}`}>
+                      <button className="edit-button" >
+                        Edit
+                      </button>
+                    </Link>
+                    
+                  <button className="delete-button">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
