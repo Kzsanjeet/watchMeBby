@@ -6,7 +6,7 @@
 
 .container {
   display: flex;
-
+ 
   gap: 20px;
 }
 
@@ -14,6 +14,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 30%;
+  
 }
 
 .movie-buttons label,
@@ -22,6 +24,7 @@
 }
 
 .show-movie {
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

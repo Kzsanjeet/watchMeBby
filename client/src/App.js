@@ -15,6 +15,8 @@ import UserHomepage from './Pages/User/UserHomepage';
 import UserLogin from './Pages/User/UserLogin';
 import UserRegister from './Pages/User/UserRegister';
 import AllMovies from './Pages/User/AllMovies';
+import { EditMovie } from './Pages/Admin/EditMovie';
+import ViewMovie from './Pages/User/ViewMovie';
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path='/admin/add-for-you' element={<AddForYouMovies />} />
         <Route path='/admin/users' element={<SeeUsers/>}/>
         <Route path='/admin/movies' element={<SeeMovies/>} />
+        <Route path='/admin/edit-movie/:id' element={<EditMovie />} />
 
 
         {/* for user */}
@@ -38,6 +41,7 @@ function App() {
         <Route path='/login' element={<UserLogin />} />
         <Route path='/register' element={<UserRegister/>} />
         <Route path='/movies' element={<AllMovies/>} />
+        <Route path='/watch-movie/:id' element={<ViewMovie/>} />
       </Routes>
     </Router>
     

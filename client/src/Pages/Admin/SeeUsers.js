@@ -47,7 +47,7 @@ const SeeUsers = () => {
     <>
       <AdminNav />
       <div className="see-users-container">
-        <h2 className="see-users-title">Users</h2>
+        <h2 className="see-users-title">Users ({users.length})</h2>
         <table className="see-users-table">
           <thead>
             <tr>

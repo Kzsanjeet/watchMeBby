@@ -44,7 +44,8 @@ router.route("/login-user").post(loginUser)
 //this is for CRUD in admin panel
 router.route("/get-movie").get(getMovie)
 router.route("/del-movie").delete(delMovie)
-router.route("/edit-movie").patch(editMovie)
+// router.route("/edit-movie/:id",upload.single('image')).patch(editMovie)
+router.patch("/edit-movie/:id",upload.single('image'),editMovie)
 
 //for featured movie add-category-movies
 router.route("/add-category-movies").post(addFeaturedMovie)
